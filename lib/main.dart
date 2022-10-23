@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(
-      MaterialApp(
-        home: Scaffold(
-          body: const FormularioTransferencia(),
-        ),
+void main() => runApp(const BytebankApp());
+
+class BytebankApp extends StatelessWidget {
+  const BytebankApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: FormularioTransferencia(),
       ),
     );
+  }
+}
 
 class ListaTransferencia extends StatelessWidget {
   const ListaTransferencia({super.key});
