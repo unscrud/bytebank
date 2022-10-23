@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(
       MaterialApp(
         home: Scaffold(
-          body: const ListaTransferencia(),
-          appBar: AppBar(
-            title: const Text("Transferências"),
-          ),
+          body: const FormularioTransferencia(),
         ),
       ),
     );
@@ -16,12 +13,21 @@ class ListaTransferencia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const <Widget>[
-        ItemTransferencia(Transferencia(420.0, 1000)),
-        ItemTransferencia(Transferencia(577.0, 1234)),
-        ItemTransferencia(Transferencia(288.5, 2345)),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Transferências"),
+      ),
+      body: Column(
+        children: const <Widget>[
+          ItemTransferencia(Transferencia(420.0, 1000)),
+          ItemTransferencia(Transferencia(577.0, 1234)),
+          ItemTransferencia(Transferencia(288.5, 2345)),
+        ],
+      ),
+      // floatingActionButton: const FloatingActionButton(
+      //   onPressed: () {},
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }
@@ -48,4 +54,13 @@ class Transferencia {
   final int _numeroConta;
 
   const Transferencia(this._valor, this._numeroConta);
+}
+
+class FormularioTransferencia extends StatelessWidget {
+  const FormularioTransferencia({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
