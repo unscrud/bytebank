@@ -68,6 +68,11 @@ class FormularioTransferencia extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Título da AppBar!"),
+      ),
+      body: const Text("Corpo do Scaffold"),
+    );
   }
 }
