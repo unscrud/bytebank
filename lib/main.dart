@@ -7,7 +7,7 @@ class BytebankApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
         body: FormularioTransferencia(),
       ),
@@ -31,10 +31,10 @@ class ListaTransferencia extends StatelessWidget {
           ItemTransferencia(Transferencia(288.5, 2345)),
         ],
       ),
-      // floatingActionButton: const FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Icon(Icons.add),
-      // ),
+      floatingActionButton: const FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
@@ -64,15 +64,43 @@ class Transferencia {
 }
 
 class FormularioTransferencia extends StatelessWidget {
-  const FormularioTransferencia({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Título da AppBar!"),
+        title: const Text("Criando Transferência"),
       ),
-      body: const Text("Corpo do Scaffold"),
+      body: Column(
+        children: const <Widget>[
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: TextField(
+              style: TextStyle(fontSize: 24.0),
+              decoration: InputDecoration(
+                labelText: "Número da conta",
+                hintText: "0000",
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: TextField(
+              style: TextStyle(fontSize: 24.0),
+              decoration: InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: "Valor",
+                hintText: "0.00",
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ),
+          ElevatedButton(
+            onPressed: null,
+            child: Text("Confirmar"),
+          ),
+        ],
+      ),
     );
   }
 }
