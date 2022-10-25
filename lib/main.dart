@@ -64,6 +64,11 @@ class Transferencia {
 }
 
 class FormularioTransferencia extends StatelessWidget {
+  final TextEditingController _controladorNumeroConta = TextEditingController();
+  final TextEditingController _controladorValor = TextEditingController();
+
+  FormularioTransferencia({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,12 +76,13 @@ class FormularioTransferencia extends StatelessWidget {
         title: const Text("Criando Transferência"),
       ),
       body: Column(
-        children: const <Widget>[
+        children: <Widget>[
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: TextField(
-              style: TextStyle(fontSize: 24.0),
-              decoration: InputDecoration(
+              controller: _controladorNumeroConta,
+              style: const TextStyle(fontSize: 24.0),
+              decoration: const InputDecoration(
                 labelText: "Número da conta",
                 hintText: "0000",
               ),
@@ -84,10 +90,11 @@ class FormularioTransferencia extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: TextField(
-              style: TextStyle(fontSize: 24.0),
-              decoration: InputDecoration(
+              controller: _controladorValor,
+              style: const TextStyle(fontSize: 24.0),
+              decoration: const InputDecoration(
                 icon: Icon(Icons.monetization_on),
                 labelText: "Valor",
                 hintText: "0.00",
@@ -95,7 +102,7 @@ class FormularioTransferencia extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          ElevatedButton(
+          const ElevatedButton(
             onPressed: null,
             child: Text("Confirmar"),
           ),
