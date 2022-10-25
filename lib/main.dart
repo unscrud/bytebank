@@ -102,9 +102,17 @@ class FormularioTransferencia extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
           ),
-          const ElevatedButton(
-            onPressed: null,
-            child: Text("Confirmar"),
+          ElevatedButton(
+            onPressed: () {
+              final int? numeroConta =
+                  int.tryParse(_controladorNumeroConta.text);
+              final double? valor = double.tryParse(_controladorValor.text);
+              if (numeroConta != null && valor != null) {
+                final transferenciaCriada = Transferencia(valor, numeroConta);
+                debugPrint('$transferenciaCriada');
+              }
+            },
+            child: const Text("Confirmar"),
           ),
         ],
       ),
