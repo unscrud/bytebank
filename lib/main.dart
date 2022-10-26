@@ -82,45 +82,57 @@ class FormularioTransferencia extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Editor(_controladorNumeroConta, "Número da Conta", "0000", null),
-          Editor(_controladorValor, "Valor", "0.00", Icons.monetization_on),
+          Editor(
+              controlador: _controladorNumeroConta,
+              rotulo: "Número da Conta",
+              dica: "0000"),
+          Editor(
+              controlador: _controladorValor,
+              rotulo: "Valor",
+              dica: "0.00",
+              icone: Icons.monetization_on),
           ElevatedButton(
-            onPressed: () {
-              final int? numeroConta =
-                  int.tryParse(_controladorNumeroConta.text);
-              final double? valor = double.tryParse(_controladorValor.text);
-              if (numeroConta != null && valor != null) {
-                final transferenciaCriada = Transferencia(valor, numeroConta);
-                debugPrint('$transferenciaCriada');
-              }
-            },
+            onPressed: () => _criaTransferencia(),
             child: const Text("Confirmar"),
           ),
         ],
       ),
     );
   }
+
+  void _criaTransferencia() {
+    final int? numeroConta = int.tryParse(_controladorNumeroConta.text);
+    final double? valor = double.tryParse(_controladorValor.text);
+    if (numeroConta != null && valor != null) {
+      final transferenciaCriada = Transferencia(valor, numeroConta);
+      debugPrint("$transferenciaCriada");
+    }
+  }
 }
 
 class Editor extends StatelessWidget {
-  final TextEditingController _controlador;
-  final String _rotulo;
-  final String _dica;
-  final IconData? _icone;
-  const Editor(this._controlador, this._rotulo, this._dica, this._icone,
-      {super.key});
+  final TextEditingController controlador;
+  final String rotulo;
+  final String dica;
+  final IconData? icone;
+  const Editor(
+      {required this.controlador,
+      required this.rotulo,
+      required this.dica,
+      this.icone,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: TextField(
-        controller: _controlador,
+        controller: controlador,
         style: const TextStyle(fontSize: 24.0),
         decoration: InputDecoration(
-          icon: Icon(_icone),
-          labelText: _rotulo,
-          hintText: _dica,
+          icon: Icon(icone),
+          labelText: rotulo,
+          hintText: dica,
         ),
         keyboardType: TextInputType.number,
       ),
