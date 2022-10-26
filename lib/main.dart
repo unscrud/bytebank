@@ -82,31 +82,8 @@ class FormularioTransferencia extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _controladorNumeroConta,
-              style: const TextStyle(fontSize: 24.0),
-              decoration: const InputDecoration(
-                labelText: "Número da conta",
-                hintText: "0000",
-              ),
-              keyboardType: TextInputType.number,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-              controller: _controladorValor,
-              style: const TextStyle(fontSize: 24.0),
-              decoration: const InputDecoration(
-                icon: Icon(Icons.monetization_on),
-                labelText: "Valor",
-                hintText: "0.00",
-              ),
-              keyboardType: TextInputType.number,
-            ),
-          ),
+          Editor(_controladorNumeroConta, "Número da Conta", "0000", null),
+          Editor(_controladorValor, "Valor", "0.00", Icons.monetization_on),
           ElevatedButton(
             onPressed: () {
               final int? numeroConta =
@@ -120,6 +97,32 @@ class FormularioTransferencia extends StatelessWidget {
             child: const Text("Confirmar"),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class Editor extends StatelessWidget {
+  final TextEditingController _controlador;
+  final String _rotulo;
+  final String _dica;
+  final IconData? _icone;
+  const Editor(this._controlador, this._rotulo, this._dica, this._icone,
+      {super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: TextField(
+        controller: _controlador,
+        style: const TextStyle(fontSize: 24.0),
+        decoration: InputDecoration(
+          icon: Icon(_icone),
+          labelText: _rotulo,
+          hintText: _dica,
+        ),
+        keyboardType: TextInputType.number,
       ),
     );
   }
