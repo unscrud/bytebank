@@ -34,12 +34,10 @@ class ListaTransferencia extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Future future = _navegarParaFormularioTransferencia(context);
-          //if (future != null) {
           future.then((transferenciaRecebida) {
             debugPrint('Chegou no then do print');
             debugPrint('$transferenciaRecebida');
           });
-          //}
         },
         child: const Icon(Icons.add),
       ),
