@@ -7,7 +7,7 @@ class BytebankApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
         body: ListaTransferencia(),
       ),
@@ -16,7 +16,9 @@ class BytebankApp extends StatelessWidget {
 }
 
 class ListaTransferencia extends StatelessWidget {
-  const ListaTransferencia({super.key});
+  final List<Transferencia> _transferencias = [];
+
+  ListaTransferencia({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +26,12 @@ class ListaTransferencia extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Transferências"),
       ),
-      body: Column(
-        children: const <Widget>[
-          ItemTransferencia(Transferencia(420.0, 1000)),
-          ItemTransferencia(Transferencia(577.0, 1234)),
-          ItemTransferencia(Transferencia(288.5, 2345)),
-        ],
+      body: ListView.builder(
+        itemCount: _transferencias.length,
+        itemBuilder: ((context, indice) {
+          final transferencia = _transferencias[indice];
+          return ItemTransferencia(transferencia);
+        }),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -37,6 +39,7 @@ class ListaTransferencia extends StatelessWidget {
           future.then((transferenciaRecebida) {
             debugPrint('Chegou no then do print');
             debugPrint('$transferenciaRecebida');
+            _transferencias.add(transferenciaRecebida);
           });
         },
         child: const Icon(Icons.add),
