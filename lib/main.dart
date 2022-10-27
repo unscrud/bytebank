@@ -33,19 +33,27 @@ class ListaTransferencia extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          _navegarParaFormularioTransferencia(context);
+          Future future = _navegarParaFormularioTransferencia(context);
+          //if (future != null) {
+          future.then((transferenciaRecebida) {
+            debugPrint('Chegou no then do print');
+            debugPrint('$transferenciaRecebida');
+          });
+          //}
         },
         child: const Icon(Icons.add),
       ),
     );
   }
 
-  void _navegarParaFormularioTransferencia(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(
+  Future _navegarParaFormularioTransferencia(BuildContext context) {
+    Future future = Navigator.push(context, MaterialPageRoute(
       builder: (context) {
         return FormularioTransferencia();
       },
     ));
+
+    return future;
   }
 }
 
@@ -102,7 +110,7 @@ class FormularioTransferencia extends StatelessWidget {
               dica: "0.00",
               icone: Icons.monetization_on),
           ElevatedButton(
-            onPressed: () => _criaTransferencia(),
+            onPressed: () => _criaTransferencia(context),
             child: const Text("Confirmar"),
           ),
         ],
@@ -110,12 +118,14 @@ class FormularioTransferencia extends StatelessWidget {
     );
   }
 
-  void _criaTransferencia() {
+  void _criaTransferencia(BuildContext context) {
     final int? numeroConta = int.tryParse(_controladorNumeroConta.text);
     final double? valor = double.tryParse(_controladorValor.text);
     if (numeroConta != null && valor != null) {
       final transferenciaCriada = Transferencia(valor, numeroConta);
+      debugPrint("Criando transferência...");
       debugPrint("$transferenciaCriada");
+      Navigator.pop(context, transferenciaCriada);
     }
   }
 }
