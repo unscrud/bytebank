@@ -42,11 +42,15 @@ class _ListaTransferenciaState extends State<ListaTransferencia> {
         onPressed: () {
           Future future = _navegarParaFormularioTransferencia(context);
           future.then((transferenciaRecebida) {
-            debugPrint('Chegou no then do print');
-            if (transferenciaRecebida != null) {
-              debugPrint('$transferenciaRecebida');
-              _transferencias.add(transferenciaRecebida);
-            }
+            Future.delayed(const Duration(seconds: 1), () {
+              debugPrint('Chegou no then do print');
+              if (transferenciaRecebida != null) {
+                debugPrint('$transferenciaRecebida');
+                setState(() {
+                  _transferencias.add(transferenciaRecebida);
+                });
+              }
+            });
           });
         },
         child: const Icon(Icons.add),
