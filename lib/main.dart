@@ -94,11 +94,18 @@ class Transferencia {
   }
 }
 
-class FormularioTransferencia extends StatelessWidget {
-  final TextEditingController _controladorNumeroConta = TextEditingController();
-  final TextEditingController _controladorValor = TextEditingController();
-
+class FormularioTransferencia extends StatefulWidget {
   FormularioTransferencia({super.key});
+
+  @override
+  State<FormularioTransferencia> createState() =>
+      _FormularioTransferenciaState();
+}
+
+class _FormularioTransferenciaState extends State<FormularioTransferencia> {
+  final TextEditingController _controladorNumeroConta = TextEditingController();
+
+  final TextEditingController _controladorValor = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
