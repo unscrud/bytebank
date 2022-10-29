@@ -95,7 +95,7 @@ class Transferencia {
 }
 
 class FormularioTransferencia extends StatefulWidget {
-  FormularioTransferencia({super.key});
+  const FormularioTransferencia({super.key});
 
   @override
   State<FormularioTransferencia> createState() =>
