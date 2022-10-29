@@ -7,7 +7,7 @@ class BytebankApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Scaffold(
         body: ListaTransferencia(),
       ),
@@ -15,10 +15,15 @@ class BytebankApp extends StatelessWidget {
   }
 }
 
-class ListaTransferencia extends StatelessWidget {
-  final List<Transferencia> _transferencias = [];
+class ListaTransferencia extends StatefulWidget {
+  const ListaTransferencia({super.key});
 
-  ListaTransferencia({super.key});
+  @override
+  State<ListaTransferencia> createState() => _ListaTransferenciaState();
+}
+
+class _ListaTransferenciaState extends State<ListaTransferencia> {
+  final List<Transferencia> _transferencias = [];
 
   @override
   Widget build(BuildContext context) {
