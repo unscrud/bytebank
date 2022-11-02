@@ -3,6 +3,13 @@ import 'package:flutter/material.dart';
 import '../../components/editor.dart';
 import '../../models/transferencia.dart';
 
+const String _tituloAppBar = "Criando Transferência";
+const String _rotuloNumeroConta = "Número da Conta";
+const String _dicaNumeroConta = "0000";
+const String _rotuloValor = "Valor";
+const String _dicaValor = "0.00";
+const String _textoBotaoConfirmar = "Confirmar";
+
 class FormularioTransferencia extends StatefulWidget {
   const FormularioTransferencia({super.key});
 
@@ -20,23 +27,24 @@ class _FormularioTransferenciaState extends State<FormularioTransferencia> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Criando Transferência"),
+        title: const Text(_tituloAppBar),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Editor(
-                controlador: _controladorNumeroConta,
-                rotulo: "Número da Conta",
-                dica: "0000"),
+              controlador: _controladorNumeroConta,
+              rotulo: _rotuloNumeroConta,
+              dica: _dicaNumeroConta,
+            ),
             Editor(
                 controlador: _controladorValor,
-                rotulo: "Valor",
-                dica: "0.00",
+                rotulo: _rotuloValor,
+                dica: _dicaValor,
                 icone: Icons.monetization_on),
             ElevatedButton(
               onPressed: () => _criaTransferencia(context),
-              child: const Text("Confirmar"),
+              child: const Text(_textoBotaoConfirmar),
             ),
           ],
         ),
@@ -49,8 +57,6 @@ class _FormularioTransferenciaState extends State<FormularioTransferencia> {
     final double? valor = double.tryParse(_controladorValor.text);
     if (numeroConta != null && valor != null) {
       final transferenciaCriada = Transferencia(valor, numeroConta);
-      debugPrint("Criando transferência...");
-      debugPrint("$transferenciaCriada");
       Navigator.pop(context, transferenciaCriada);
     }
   }
